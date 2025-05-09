@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.Random;
+import java.util.Objects;
 
 public class Car implements Movable {
     private final CarName carName;
@@ -38,5 +38,17 @@ public class Car implements Movable {
 
     public void setDistance(int distance) {
         this.distance = distance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car car)) return false;
+        return Objects.equals(carName, car.carName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(carName);
     }
 }
