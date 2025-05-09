@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class Car implements Movable {
+public class Car {
     private final CarName carName;
     private int distance;
 
@@ -16,7 +16,6 @@ public class Car implements Movable {
         this.distance = distance;
     }
 
-    @Override
     public void move(int randomNum) {
         if (randomNum > 3) {
             distance += 1;
