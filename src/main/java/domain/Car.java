@@ -1,10 +1,11 @@
+package domain;
+
 import java.util.Random;
 
 public class Car implements Movable {
-
     private final String name;
     private int distance;
-    private static final Random random = new Random();
+
 
     public Car(String name) {
         validateCarName(name);
@@ -19,20 +20,18 @@ public class Car implements Movable {
     }
 
     private void validateCarName(String name) {
-        if (name.length() > 5)
-            throw new RuntimeException("이름은 5자 이하만 가능합니다. : " + name);
-    }
-
-    @Override
-    public void move() {
-        if (isMoveable()) {
-            distance += 1;
+        if (name == null || name.isBlank())
+            throw new IllegalArgumentException("유효하지 않은 입력입니다.");
+        if (name.length() > 5) {
+            throw new InvalidLengthUserNameException("이름은 5자까지 가능합니다.");
         }
     }
 
-    private boolean isMoveable() {
-        int randomInt = random.nextInt(10);
-        return randomInt > 3;
+    @Override
+    public void move(int randomNum) {
+        if (randomNum > 3) {
+            distance += 1;
+        }
     }
 
     public String getName() {
@@ -46,5 +45,11 @@ public class Car implements Movable {
     public Car getDeepCopy() {
         Car car = new Car(this.name, this.distance);
         return car;
+    }
+
+    static class InvalidLengthUserNameException extends IllegalArgumentException {
+        InvalidLengthUserNameException(String errorMessage) {
+            super(errorMessage);
+        }
     }
 }

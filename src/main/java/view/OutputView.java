@@ -1,6 +1,8 @@
+package view;
+
+import domain.Car;
+
 import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class OutputView {
     public static void printResult(List<List<Car>> history) {

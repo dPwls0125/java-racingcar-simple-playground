@@ -1,10 +1,13 @@
+package domain;
+
+import domain.Car;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingWithCars {
-
     private List<Car> participatingCars;
     private int times;
 
@@ -19,7 +22,7 @@ public class RacingWithCars {
         List<List<Car>> history = new ArrayList<>();
         for (int i = 0; i < times; i++) {
             participatingCars
-                    .forEach(Car::move);
+                    .forEach(car -> car.move(RandomNumberGenerator.getRandomNumberFrom0To9()));
             history.add(deepCopiedCars());
         }
         return history;
