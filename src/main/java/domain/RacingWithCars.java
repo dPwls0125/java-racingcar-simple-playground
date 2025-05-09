@@ -1,7 +1,5 @@
 package domain;
 
-import domain.Car;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +11,7 @@ public class RacingWithCars {
 
     public RacingWithCars(String[] carNames, int times) {
         this.participatingCars = Arrays.stream(carNames)
-                .map(Car::new)
+                .map(carName -> new Car(new CarName(carName)))
                 .collect(Collectors.toList());
         this.times = times;
     }

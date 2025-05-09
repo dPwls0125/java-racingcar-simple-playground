@@ -3,28 +3,17 @@ package domain;
 import java.util.Random;
 
 public class Car implements Movable {
-    private final String name;
+    private final CarName carName;
     private int distance;
 
-
-    public Car(String name) {
-        validateCarName(name);
-        this.name = name;
+    public Car(CarName carName) {
+        this.carName = carName;
         distance = 0;
     }
 
-    public Car(String name, int distance) {
-        validateCarName(name);
-        this.name = name;
+    public Car(CarName carName, int distance) {
+        this.carName = carName;
         this.distance = distance;
-    }
-
-    private void validateCarName(String name) {
-        if (name == null || name.isBlank())
-            throw new IllegalArgumentException("유효하지 않은 입력입니다.");
-        if (name.length() > 5) {
-            throw new InvalidLengthUserNameException("이름은 5자까지 가능합니다.");
-        }
     }
 
     @Override
@@ -35,7 +24,7 @@ public class Car implements Movable {
     }
 
     public String getName() {
-        return name;
+        return carName.getName();
     }
 
     public int getDistance() {
@@ -43,13 +32,8 @@ public class Car implements Movable {
     }
 
     public Car getDeepCopy() {
-        Car car = new Car(this.name, this.distance);
+        Car car = new Car(this.carName, this.distance);
         return car;
     }
 
-    static class InvalidLengthUserNameException extends IllegalArgumentException {
-        InvalidLengthUserNameException(String errorMessage) {
-            super(errorMessage);
-        }
-    }
 }
