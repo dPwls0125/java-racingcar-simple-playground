@@ -36,4 +36,7 @@ public class Car implements Movable {
         return car;
     }
 
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
 }

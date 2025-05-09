@@ -34,7 +34,7 @@ public class CarName {
         return name;
     }
 
-    static class InvalidLengthUserNameException extends IllegalArgumentException {
+    public static class InvalidLengthUserNameException extends IllegalArgumentException {
         InvalidLengthUserNameException(String errorMessage) {
             super(errorMessage);
         }
