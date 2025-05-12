@@ -9,10 +9,6 @@ public class RacingWithCars {
     private final List<Car> participatingCars;
     private final int times;
 
-    public List<Car> getParticipatingCars() {
-        return participatingCars;
-    }
-
     public RacingWithCars(String[] carNames, int times) {
         this.participatingCars = Arrays.stream(carNames)
                 .map(carName -> new Car(new CarName(carName)))
@@ -46,6 +42,10 @@ public class RacingWithCars {
                 .stream()
                 .map(Car::getDeepCopy)
                 .collect(Collectors.toList());
+    }
+
+    public List<Car> getParticipatingCars() {
+        return participatingCars;
     }
 
 }

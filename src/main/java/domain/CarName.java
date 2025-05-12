@@ -23,6 +23,10 @@ public class CarName {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,13 +39,10 @@ public class CarName {
         return Objects.hash(name);
     }
 
-    public String getName() {
-        return name;
-    }
-
     public static class InvalidLengthCarNameException extends IllegalArgumentException {
         InvalidLengthCarNameException(String errorMessage) {
             super(errorMessage);
         }
     }
+
 }
