@@ -11,6 +11,7 @@ public class CarName {
         this.name = name;
     }
 
+
     private void validateNotBlankOrNull(String name) {
         if (name == null || name.isBlank())
             throw new IllegalArgumentException("유효하지 않은 입력입니다.");

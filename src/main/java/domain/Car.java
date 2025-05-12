@@ -6,7 +6,7 @@ public class Car {
     private final CarName carName;
     private int distance;
     private final int MOVABLE_NUMBER = 3;
-    private final int MOVING_PACE = 3;
+    private final int MOVING_PACE = 1;
 
     public Car(CarName carName) {
         this.carName = carName;
@@ -18,8 +18,8 @@ public class Car {
         this.distance = distance;
     }
 
-    public void move(int num) {
-        if (num > MOVABLE_NUMBER) {
+    public void move(int number) {
+        if (number > MOVABLE_NUMBER) {
             distance += MOVING_PACE;
         }
     }
