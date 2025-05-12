@@ -5,6 +5,8 @@ import java.util.Objects;
 public class Car {
     private final CarName carName;
     private int distance;
+    private final int MOVABLE_NUMBER = 3;
+    private final int MOVING_PACE = 3;
 
     public Car(CarName carName) {
         this.carName = carName;
@@ -16,9 +18,9 @@ public class Car {
         this.distance = distance;
     }
 
-    public void move(int randomNum) {
-        if (randomNum > 3) {
-            distance += 1;
+    public void move(int num) {
+        if (num > MOVABLE_NUMBER) {
+            distance += MOVING_PACE;
         }
     }
 
