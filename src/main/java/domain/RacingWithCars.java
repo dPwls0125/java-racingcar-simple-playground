@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingWithCars {
-    private List<Car> participatingCars;
-    private int times;
+    private final List<Car> participatingCars;
+    private final int times;
 
     public List<Car> getParticipatingCars() {
         return participatingCars;
