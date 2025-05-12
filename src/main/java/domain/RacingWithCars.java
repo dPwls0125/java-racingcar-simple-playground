@@ -1,5 +1,8 @@
 package domain;
 
+import data.CarSnapShot;
+import data.RoundResult;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,17 +19,14 @@ public class RacingWithCars {
         this.times = times;
     }
 
-    public List<List<Car>> race() {
-        List<List<Car>> history = new ArrayList<>();
-        for (int i = 0; i < times; i++) {
-            participatingCars
-                    .forEach(car -> car.move(RandomNumberGenerator.getRandomNumberFrom0To9()));
-            history.add(deepCopiedCars());
-        }
-        return history;
+    public RoundResult raceOneRound() {
+        List<RoundResult> gameResultHistory = new ArrayList<>();
+        participatingCars
+                .forEach(car -> car.move(RandomNumberGenerator.getRandomNumberFrom0To9()));
+        return getRoundResult();
     }
 
-    public List<Car> getWinner() {
+    public List<CarSnapShot> getWinner() {
         int maxDistance = participatingCars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
@@ -34,18 +34,22 @@ public class RacingWithCars {
 
         return participatingCars.stream()
                 .filter(car -> car.getDistance() == maxDistance)
+                .map(car -> new CarSnapShot(car.getName(), car.getDistance()))
                 .collect(Collectors.toList());
     }
 
-    private List<Car> deepCopiedCars() {
-        return participatingCars
-                .stream()
-                .map(Car::getDeepCopy)
+    private RoundResult getRoundResult() {
+        List<CarSnapShot> roundResult = participatingCars.stream()
+                .map(car -> new CarSnapShot(car.getName(), car.getDistance()))
                 .collect(Collectors.toList());
+        return new RoundResult(roundResult);
     }
 
     public List<Car> getParticipatingCars() {
         return participatingCars;
     }
 
+    public int getTimes() {
+        return times;
+    }
 }

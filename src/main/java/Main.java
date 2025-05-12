@@ -1,9 +1,6 @@
-import domain.Car;
 import domain.RacingWithCars;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,9 +8,10 @@ public class Main {
         int times = InputView.getTimes();
 
         RacingWithCars racingWithCars = new RacingWithCars(carNames, times);
-        List<List<Car>> history = racingWithCars.race();
+        RacingGameManager racingGameManager = new RacingGameManager(racingWithCars);
 
-        OutputView.printResult(history);
-        OutputView.printWinners(racingWithCars.getWinner());
+        racingGameManager.raceAndPrintRoundResults();
+
+        OutputView.printWinners(racingGameManager.getWinnerNames());
     }
 }
