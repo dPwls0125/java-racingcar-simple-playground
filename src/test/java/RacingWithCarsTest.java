@@ -1,6 +1,7 @@
 import data.CarSnapShot;
 import data.RoundResult;
 import domain.Car;
+import utils.MovableNumberGenerator;
 import domain.RacingWithCars;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,16 +47,18 @@ public class RacingWithCarsTest {
 //
 //        List<Car> participaintCars = racing.getParticipatingCars();
 //        for (int i = 0; i < 3; i++) {
-//            participaintCars.get(i).setDistance(distances[i]);
+//            participaintCars.get(i).move(new MovableNumberGenerator());
 //        }
 //
 //        List<CarSnapShot> winners = racing.getWinner();
-//        List<Car> expectedWinners = expectedWinnerIndexes.stream()
-//                .map(participaintCars::get)
+//        List<CarSnapShot> expectedWinners = expectedWinnerIndexes.stream()
+//                .map(index -> new CarSnapShot(carNames[index], distances[index]))
 //                .collect(Collectors.toList());
+//
 //        assertThat(winners)
 //                .containsExactlyInAnyOrderElementsOf(expectedWinners);
 //    }
+
 
     private static Stream<Arguments> carDistancesForWinners() {
         return Stream.of(

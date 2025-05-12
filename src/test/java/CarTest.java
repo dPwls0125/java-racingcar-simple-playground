@@ -1,6 +1,8 @@
 import domain.Car;
 import domain.CarName;
 
+import utils.ImmovableNumberGenerator;
+import utils.MovableNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -9,7 +11,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class CarTest {
 
@@ -23,11 +24,11 @@ public class CarTest {
             car = new Car(new CarName("car1"));
         }
 
-        @ParameterizedTest(name = "random값이 4 이상일 경우 한칸 주행한다.")
-        @ValueSource(ints = {4, 5, 6})
-        void moveForward_whenRandomNumberIsGreaterThanOrEqualToFour(int randomNum) {
+        @Test
+        @DisplayName("random값이 4 이상일 경우 한칸 주행한다.")
+        void moveForward_whenRandomNumberIsGreaterThanOrEqualToFour() {
             // when
-            car.move(randomNum);
+            car.move(new MovableNumberGenerator());
             // then
             assertThat(car.getDistance()).isEqualTo(1);
         }
@@ -36,7 +37,7 @@ public class CarTest {
         @ValueSource(ints = {0, 1, 2})
         void stop_whenRandomNumberIsLowerThenFour(int randomNum) {
             // when
-            car.move(randomNum);
+            car.move(new ImmovableNumberGenerator());
             // then
             assertThat(car.getDistance()).isEqualTo(0);
         }

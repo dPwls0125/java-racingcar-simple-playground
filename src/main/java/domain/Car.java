@@ -1,12 +1,14 @@
 package domain;
 
+import utils.NumberGenerator;
+
 import java.util.Objects;
 
 public class Car {
     private final CarName carName;
     private int distance;
-    private final int MOVABLE_NUMBER = 3;
-    private final int MOVING_PACE = 1;
+    public static final int MOVING_PACE = 1;
+    public static final int IMMOVABLE_MAX_NUM = 3;
 
     public Car(CarName carName) {
         this.carName = carName;
@@ -18,10 +20,14 @@ public class Car {
         this.distance = distance;
     }
 
-    public void move(int number) {
-        if (number > MOVABLE_NUMBER) {
+    public void move(NumberGenerator numberGenerator) {
+        if (isMovable(numberGenerator.generateNumber())) {
             distance += MOVING_PACE;
         }
+    }
+
+    private boolean isMovable(int number) {
+        return number > IMMOVABLE_MAX_NUM;
     }
 
     public String getName() {
@@ -35,10 +41,6 @@ public class Car {
     public Car getDeepCopy() {
         Car car = new Car(this.carName, this.distance);
         return car;
-    }
-
-    public void setDistance(int distance) {
-        this.distance = distance;
     }
 
     @Override

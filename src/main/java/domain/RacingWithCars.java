@@ -2,8 +2,8 @@ package domain;
 
 import data.CarSnapShot;
 import data.RoundResult;
+import utils.RandomNumberGenerator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,9 +20,9 @@ public class RacingWithCars {
     }
 
     public RoundResult raceOneRound() {
-        List<RoundResult> gameResultHistory = new ArrayList<>();
+        RandomNumberGenerator numberGenerator = new RandomNumberGenerator();
         participatingCars
-                .forEach(car -> car.move(RandomNumberGenerator.getRandomNumberFrom0To9()));
+                .forEach(car -> car.move(numberGenerator));
         return getRoundResult();
     }
 

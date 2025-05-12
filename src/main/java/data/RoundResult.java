@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RoundResult {
-    private List<CarSnapShot> carSnapShots;
+    private final List<CarSnapShot> carSnapShots;
 
     public RoundResult(List<CarSnapShot> carSnapShots) {
         this.carSnapShots = carSnapShots;
