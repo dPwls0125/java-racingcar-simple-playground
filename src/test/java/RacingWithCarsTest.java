@@ -1,13 +1,13 @@
 import data.CarSnapShot;
 import data.RoundResult;
 import domain.Car;
-import utils.MovableNumberGenerator;
 import domain.RacingWithCars;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import utils.MovableNumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,26 +39,32 @@ public class RacingWithCarsTest {
     }
 
     //Todo : 우승자 테스트 코드 수정 예정
-//    @ParameterizedTest(name = "주행거리:{0}, 예상 우승자 인덱스 : {1}")
-//    @MethodSource("carDistancesForWinners")
-//    void testGetWinnerCorrectly(int[] distances, List<Integer> expectedWinnerIndexes) {
-//        String[] carNames = {"car1", "car2", "car3"};
-//        RacingWithCars racing = new RacingWithCars(carNames, 0);
-//
-//        List<Car> participaintCars = racing.getParticipatingCars();
-//        for (int i = 0; i < 3; i++) {
-//            participaintCars.get(i).move(new MovableNumberGenerator());
-//        }
-//
-//        List<CarSnapShot> winners = racing.getWinner();
-//        List<CarSnapShot> expectedWinners = expectedWinnerIndexes.stream()
-//                .map(index -> new CarSnapShot(carNames[index], distances[index]))
-//                .collect(Collectors.toList());
-//
-//        assertThat(winners)
-//                .containsExactlyInAnyOrderElementsOf(expectedWinners);
-//    }
+    @ParameterizedTest(name = "주행거리:{0}, 예상 우승자 인덱스 : {1}")
+    @MethodSource("carDistancesForWinners")
+    void testGetWinnerCorrectly(int[] distances, List<Integer> expectedWinnerIndexes) {
+        String[] carNames = {"car1", "car2", "car3"};
+        RacingWithCars racing = new RacingWithCars(carNames, 0);
 
+        List<Car> participaingCars = racing.getParticipatingCars();
+        for (int i = 0; i < 3; i++) {
+            Car car = participaingCars.get(i);
+            forceToMoveForWantingTimes(distances[i], car);
+        }
+
+        List<CarSnapShot> winners = racing.getWinner();
+        List<CarSnapShot> expectedWinners = expectedWinnerIndexes.stream()
+                .map(index -> new CarSnapShot(carNames[index], distances[index]))
+                .collect(Collectors.toList());
+
+        assertThat(winners)
+                .containsExactlyInAnyOrderElementsOf(expectedWinners);
+    }
+
+    void forceToMoveForWantingTimes(int times, Car car) {
+        for (int i = 0; i < times; i++) {
+            car.move(new MovableNumberGenerator());
+        }
+    }
 
     private static Stream<Arguments> carDistancesForWinners() {
         return Stream.of(
