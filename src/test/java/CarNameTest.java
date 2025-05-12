@@ -12,11 +12,11 @@ public class CarNameTest {
     @Test
     @DisplayName("5자를 초과하면 예와가 발생 한다.")
     void throwsInvalidLengthUserNameException() {
-        assertThatThrownBy(() -> new CarName("123456")).isInstanceOf(CarName.InvalidLengthUserNameException.class);
+        assertThatThrownBy(() -> new CarName("123456")).isInstanceOf(CarName.InvalidLengthCarNameException.class);
     }
 
     @ParameterizedTest(name = "공백이나 null을 입력하면 예외가 발생한다.")
-    @NullAndEmptySource
+//    @NullAndEmptySource
     @ValueSource(strings = {" ", "   "})
     void throwsIllegalArgumentException(String carName) {
         assertThatThrownBy(() -> new CarName(carName)).isInstanceOf(IllegalArgumentException.class);

@@ -19,7 +19,7 @@ public class CarName {
 
     private void validateNameLengthIsLessThanOrEqualToFive(String name) {
         if (name.length() > 5) {
-            throw new InvalidLengthUserNameException("이름은 5자까지 가능합니다.");
+            throw new InvalidLengthCarNameException("이름은 5자까지 가능합니다.");
         }
     }
 
@@ -39,8 +39,8 @@ public class CarName {
         return name;
     }
 
-    public static class InvalidLengthUserNameException extends IllegalArgumentException {
-        InvalidLengthUserNameException(String errorMessage) {
+    public static class InvalidLengthCarNameException extends IllegalArgumentException {
+        InvalidLengthCarNameException(String errorMessage) {
             super(errorMessage);
         }
     }
