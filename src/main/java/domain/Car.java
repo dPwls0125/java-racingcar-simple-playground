@@ -15,11 +15,6 @@ public class Car {
         distance = 0;
     }
 
-    public Car(CarName carName, int distance) {
-        this.carName = carName;
-        this.distance = distance;
-    }
-
     public void move(NumberGenerator numberGenerator) {
         if (isMovable(numberGenerator.generateNumber())) {
             distance += MOVING_PACE;
@@ -36,11 +31,6 @@ public class Car {
 
     public int getDistance() {
         return distance;
-    }
-
-    public Car getDeepCopy() {
-        Car car = new Car(this.carName, this.distance);
-        return car;
     }
 
     @Override

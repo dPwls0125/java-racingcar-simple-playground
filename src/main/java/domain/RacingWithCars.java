@@ -2,6 +2,7 @@ package domain;
 
 import data.CarSnapShot;
 import data.RoundResult;
+import utils.NumberGenerator;
 import utils.RandomNumberGenerator;
 
 import java.util.Arrays;
@@ -13,14 +14,21 @@ public class RacingWithCars {
     private final int times;
 
     public RacingWithCars(String[] carNames, int times) {
+        validateTimesIsAtLeastOne(times);
         this.participatingCars = Arrays.stream(carNames)
                 .map(carName -> new Car(new CarName(carName)))
                 .collect(Collectors.toList());
         this.times = times;
     }
 
+    private void validateTimesIsAtLeastOne(int times) {
+        if (times < 1) {
+            throw new InvalidTimesException("게임 진행 횟수는 1 이상을 입력해주세요.");
+        }
+    }
+
     public RoundResult raceOneRound() {
-        RandomNumberGenerator numberGenerator = new RandomNumberGenerator();
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
         participatingCars
                 .forEach(car -> car.move(numberGenerator));
         return getRoundResult();
@@ -51,5 +59,11 @@ public class RacingWithCars {
 
     public int getTimes() {
         return times;
+    }
+
+    public static class InvalidTimesException extends RuntimeException {
+        public InvalidTimesException(String ErrorMessage) {
+            super(ErrorMessage);
+        }
     }
 }

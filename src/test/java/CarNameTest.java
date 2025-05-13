@@ -6,7 +6,6 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class CarNameTest {
     @Test
@@ -15,8 +14,8 @@ public class CarNameTest {
         assertThatThrownBy(() -> new CarName("123456")).isInstanceOf(CarName.InvalidLengthCarNameException.class);
     }
 
-    @ParameterizedTest(name = "공백이나 null을 입력하면 예외가 발생한다.")
-//    @NullAndEmptySource
+    @ParameterizedTest(name = "입력값: \"{0}\" → IllegalArgumentException 발생")
+    @NullAndEmptySource
     @ValueSource(strings = {" ", "   "})
     void throwsIllegalArgumentException(String carName) {
         assertThatThrownBy(() -> new CarName(carName)).isInstanceOf(IllegalArgumentException.class);
