@@ -1,7 +1,5 @@
 package utils;
 
-import utils.NumberGenerator;
-
 import java.util.Random;
 
 public class RandomNumberGenerator implements NumberGenerator {

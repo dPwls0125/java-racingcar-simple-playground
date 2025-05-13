@@ -20,7 +20,7 @@ public class CarTest {
 
     @Test
     @DisplayName("주행 조건을 만족하면, Car의 MOVING_PACE 만큼 이동한다.")
-    void move_whenGeneratedMovableNmber() {
+    void move_whenGeneratedMovableNumber() {
         // when
         car.move(new MovableNumberGenerator());
         // then
