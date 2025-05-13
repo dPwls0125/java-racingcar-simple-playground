@@ -1,4 +1,5 @@
 import domain.RacingWithCars;
+import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -7,7 +8,7 @@ public class Main {
         String[] carNames = InputView.getCarNames();
         int times = InputView.getTimes();
 
-        RacingWithCars racingWithCars = new RacingWithCars(carNames, times);
+        RacingWithCars racingWithCars = new RacingWithCars(carNames, times, new RandomNumberGenerator());
         RacingGameManager racingGameManager = new RacingGameManager(racingWithCars);
 
         racingGameManager.raceAndPrintRoundResults();

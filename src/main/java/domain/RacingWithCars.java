@@ -3,7 +3,6 @@ package domain;
 import data.CarSnapShot;
 import data.RoundResult;
 import utils.NumberGenerator;
-import utils.RandomNumberGenerator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,13 +11,15 @@ import java.util.stream.Collectors;
 public class RacingWithCars {
     private final List<Car> participatingCars;
     private final int times;
+    private final NumberGenerator numberGenerator;
 
-    public RacingWithCars(String[] carNames, int times) {
+    public RacingWithCars(String[] carNames, int times, NumberGenerator numberGenerator) {
         validateTimesIsAtLeastOne(times);
         this.participatingCars = Arrays.stream(carNames)
                 .map(carName -> new Car(new CarName(carName)))
                 .collect(Collectors.toList());
         this.times = times;
+        this.numberGenerator = numberGenerator;
     }
 
     private void validateTimesIsAtLeastOne(int times) {
@@ -28,7 +29,6 @@ public class RacingWithCars {
     }
 
     public RoundResult raceOneRound() {
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
         participatingCars
                 .forEach(car -> car.move(numberGenerator));
         return getRoundResult();

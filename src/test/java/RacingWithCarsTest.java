@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import utils.MovableNumberGenerator;
+import utils.RandomNumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ public class RacingWithCarsTest {
 
         String[] carNames = {"car1", "car2"};
 
-        assertThatThrownBy(() -> new RacingWithCars(carNames, times))
+        assertThatThrownBy(() -> new RacingWithCars(carNames, times, new RandomNumberGenerator()))
                 .isInstanceOf(RacingWithCars.InvalidTimesException.class)
                 .hasMessage("게임 진행 횟수는 1 이상을 입력해주세요.");
     }
@@ -36,7 +37,7 @@ public class RacingWithCarsTest {
     void testCarInitialization() {
 
         String[] carNames = {"car1", "car2", "car3"};
-        RacingWithCars racing = new RacingWithCars(carNames, 5);
+        RacingWithCars racing = new RacingWithCars(carNames, 5, new RandomNumberGenerator());
         List<Car> cars = racing.getParticipatingCars();
 
         assertThat(cars).hasSize(3)
@@ -49,7 +50,7 @@ public class RacingWithCarsTest {
     void testRaceHistoryContainsAllCarRecord() {
 
         String[] carNames = {"car1", "car2"};
-        RacingWithCars racing = new RacingWithCars(carNames, 5);
+        RacingWithCars racing = new RacingWithCars(carNames, 5, new RandomNumberGenerator());
 
         for (int i = 0; i < racing.getTimes(); i++) {
             RoundResult roundResult = racing.raceOneRound();
@@ -62,7 +63,7 @@ public class RacingWithCarsTest {
     void testGetWinnerCorrectly(int[] distances, List<Integer> expectedWinnerIndexes) {
 
         String[] carNames = {"car1", "car2", "car3"};
-        RacingWithCars racing = new RacingWithCars(carNames, 1);
+        RacingWithCars racing = new RacingWithCars(carNames, 1, new RandomNumberGenerator());
         List<Car> participaingCars = racing.getParticipatingCars();
 
         for (int i = 0; i < 3; i++) {
