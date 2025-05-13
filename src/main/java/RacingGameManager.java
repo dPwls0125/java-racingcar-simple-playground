@@ -18,7 +18,7 @@ public class RacingGameManager {
         int times = racingWithCars.getTimes();
         for (int i = 0; i < times; i++) {
             RoundResult roundResult = racingWithCars.raceOneRound();
-            OutputView.printRoundResult(roundResult.getFormattedRoundStatesPerCar());
+            OutputView.printRoundResult(roundResult);
         }
     }
 

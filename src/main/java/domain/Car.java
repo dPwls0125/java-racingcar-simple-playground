@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Car {
     private final CarName carName;
     private int distance;
+    
     public static final int MOVING_PACE = 1;
     public static final int IMMOVABLE_MAX_NUM = 3;
 
